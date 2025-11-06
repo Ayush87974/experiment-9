@@ -1,0 +1,19 @@
+// File: StudentDAO.java
+package com.example.tx;
+
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+@Repository
+public class StudentDAO {
+
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    @Transactional
+    public void saveStudent(Student student) {
+        sessionFactory.getCurrentSession().save(student);
+    }
+}
