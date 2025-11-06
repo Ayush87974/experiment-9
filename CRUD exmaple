@@ -1,0 +1,40 @@
+// File: StudentCRUD.java
+package com.example.hibernate;
+
+import org.hibernate.*;
+import org.hibernate.cfg.Configuration;
+
+public class StudentCRUD {
+    public static void main(String[] args) {
+        SessionFactory factory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
+
+        // Create
+        Session session = factory.openSession();
+        Transaction tx = session.beginTransaction();
+
+        Student s1 = new Student();
+        s1.setName("Ayush");
+        s1.setCity("Chandigarh");
+        session.save(s1);
+
+        tx.commit();
+
+        // Read
+        Student s = session.get(Student.class, 1);
+        System.out.println("Fetched: " + s.getName());
+
+        // Update
+        tx = session.beginTransaction();
+        s.setCity("Delhi");
+        session.update(s);
+        tx.commit();
+
+        // Delete
+        tx = session.beginTransaction();
+        session.delete(s);
+        tx.commit();
+
+        session.close();
+        factory.close();
+    }
+}
