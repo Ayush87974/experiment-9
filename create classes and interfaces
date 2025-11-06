@@ -1,0 +1,16 @@
+// File: MessageService.java
+package com.example.springdi;
+
+public interface MessageService {
+    String getMessage();
+}
+
+// File: EmailService.java
+package com.example.springdi;
+
+public class EmailService implements MessageService {
+    @Override
+    public String getMessage() {
+        return "Hello from Email Service!";
+    }
+}
