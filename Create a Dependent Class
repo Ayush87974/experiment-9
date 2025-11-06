@@ -1,0 +1,15 @@
+// File: MyApplication.java
+package com.example.springdi;
+
+public class MyApplication {
+    private MessageService messageService;
+
+    // Constructor Injection
+    public MyApplication(MessageService messageService) {
+        this.messageService = messageService;
+    }
+
+    public void processMessage() {
+        System.out.println(messageService.getMessage());
+    }
+}
